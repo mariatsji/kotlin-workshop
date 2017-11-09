@@ -38,7 +38,14 @@ URL: https://code.google.com/p/io-2012-slides
         </hgroup>
     </slide>
 
-    <slide class="thank-you-slide">
+    <slide>
+        <article>
+            <img src="images/kotlin_bridge.jpg">
+        </article>
+    </slide>
+
+
+    <slide>
         <article class="flexbox vleft">
             <ul>
                 <li>Code: <a href="https://github.com/Kotlin/kotlin-koans">https://github.com/Kotlin/kotlin-koans</a></li>
@@ -59,8 +66,24 @@ URL: https://code.google.com/p/io-2012-slides
     <slide>
         <hgroup><h2>About Kotlin</h2></hgroup>
         <article>
-            <ul>
+            <p><img width="400" src="images/kotlin_wikipedia.png" /></p>
+            <ul class="build">
                 <li>Created by JetBrains in 2011</li>
+                <li>Object-Oriented</li>
+                <li>Functional Programming</li>
+            </ul>
+        </article>
+    </slide>
+
+    <slide>
+        <hgroup><h2>About Kotlin</h2></hgroup>
+        <article>
+            <ul class="build">
+                <li>Concise</li>
+                <li>Safe</li>
+                <li>Interopable</li>
+                <li>Fast compiles</li>
+                <li>Tool-friendly</li>
             </ul>
         </article>
     </slide>
@@ -70,11 +93,37 @@ URL: https://code.google.com/p/io-2012-slides
             <h2>Hello World</h2>
         </hgroup>
         <article>
-        <pre class="prettyprint">fun main(args : Array&lt;String&gt;) {
-  println("Hello, world!")
-}
-</pre>
+        <pre class="prettyprint">object Example {
+
+    val greeting = "Hello, world!"
+    var counter = 0
+
+    @JvmStatic
+    fun main(args: Array&lt;String&gt;) {
+        println(greeting)
+        counter++
+        println("greeting nr $counter")
+    }
+}</pre>
         </article>
+    </slide>
+
+    <slide>
+        <hgroup>
+            <h2>Classes, members, objects</h2>
+        </hgroup>
+            <article>
+                <pre class="prettyprint">class MyClass {
+
+    val aProperty = 18
+
+    fun printProperty() : Unit {
+        println("Only 2 away from ${addTwo(aProperty)}")
+    }
+
+    fun addTwo(i : Int) : Int = i + 2
+}</pre>
+            </article>
     </slide>
 
 
