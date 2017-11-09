@@ -158,7 +158,48 @@ URL: https://code.google.com/p/io-2012-slides
     </slide>
 
     <slide>
-        <hgroup><h2>Nullable Types</h2></hgroup>
+        <hgroup><h2>Nullable Types I</h2></hgroup>
+        <article>
+            <pre class="prettyprint">        var a: String = "abc"
+        a = null // compilation error
+
+        val b: String? = "abc"
+        b = null</pre>
+        </article>
+    </slide>
+
+    <slide>
+        <hgroup><h2>Nullable Types II</h2></hgroup>
+        <article>
+            <pre class="prettyprint">        val b: String? = null
+
+        val length1: Int? = b.length // compilation error
+
+        val length2: Int? = b!!.length // NPE
+
+        val length: Int? = b?.length // good</pre>
+        </article>
+    </slide>
+
+    <slide>
+        <hgroup><h2>Nullable Types III</h2></hgroup>
+        <article>
+            <pre class="prettyprint">
+    data class SmallCompany(var employee: Person? = null)
+    data class Person(var middleName: String? = null)
+
+    val middleName: Int? =
+        SmallCompany().employee?.middleName?.length // null</article>
+    </slide>
+
+    <slide>
+        <hgroup><h2>Nullable Types IV</h2></hgroup>
+        <article>
+            <pre class="prettyprint">
+    val a: String = "I am no integer"
+    val aInt: Int? = a as? Int // null
+
+    listOf(1, null, 4).filterNotNull() // [1,4]</pre></article>
     </slide>
 
     <slide>
