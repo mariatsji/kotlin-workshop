@@ -189,7 +189,7 @@ URL: https://code.google.com/p/io-2012-slides
     data class Person(var middleName: String? = null)
 
     val middleName: Int? =
-        SmallCompany().employee?.middleName?.length // null</article>
+                SmallCompany().employee?.middleName?.length // null</pre></article>
     </slide>
 
     <slide>
@@ -207,7 +207,44 @@ URL: https://code.google.com/p/io-2012-slides
     </slide>
 
     <slide>
-        <hgroup><h2>Object Expressions</h2></hgroup>
+        <hgroup><h2>Object Expressions I</h2></hgroup>
+            <article>
+                <pre class="prettyprint">    data class Car(val color = "blue") // class
+    object Lock { val i = 3 } // object literal
+
+    val myObject: Any = object {
+        val i = 5
+    }
+
+    println(Car().color)
+    println(Lock.i)
+    println(myObject.i)</pre>
+            </article>
+    </slide>
+
+    <slide>
+        <hgroup><h2>Object Expressions II</h2></hgroup>
+            <article>
+                <pre class="prettyprint">    //Object Expression
+    window.addMouseListener(object : MouseAdapter() {
+        override fun mouseClicked(e: MouseEvent) {
+            // ...
+        }
+    })</pre>
+            </article>
+    </slide>
+
+    <slide>
+        <hgroup><h2>Object Expressions III</h2></hgroup>
+            <article>
+                <pre class="prettyprint">    class MyClass {
+        companion object Factory {
+            fun create(): MyClass = MyClass()
+        }
+    }
+
+    MyClass.create() // access as if "static" in class</pre>
+            </article>
     </slide>
 
     <slide>
