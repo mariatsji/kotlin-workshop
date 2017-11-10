@@ -129,6 +129,36 @@ URL: https://code.google.com/p/io-2012-slides
 
     <slide>
         <hgroup><h2>Named and Default Arguments</h2></hgroup>
+        <article>
+            <p>Java - Assume getters, equals, hashCode etc</p>
+                <pre class="prettyprint java">public Person {
+    final String name;
+    final String country;
+    final Integer age;
+    public Person(String name) {
+        this(name, "Norway", 18);
+    }
+    public Person(String name, String country) {
+        this(name, country, 18);
+    }
+    public Person(String name, String country, Integer age) {
+        this.name = name;
+        this.country = country
+        this.age = age;
+    }
+}</pre>
+</article>
+</slide>
+<slide>
+        <hgroup><h2>Kotlin</h2></hgroup>
+        <article>
+        <p>The following gives everything the Java example did, including getters, equals and hashcode. For Scalaists, think case class</p>
+        <pre class="prettyprint kotlin">
+data class Person(val name: String, val country: String = "Norway", val age : Int = 18)
+</pre>
+    <p>So, creating a new Person where you're fine with the default country, but want to change the age?</p>
+    <pre class="prettyprint kotlin">Person("Christopher", age = 35)</pre>
+    </article>
     </slide>
 
     <slide>
