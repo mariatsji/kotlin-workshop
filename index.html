@@ -134,18 +134,18 @@ URL: https://code.google.com/p/io-2012-slides
     <slide>
         <hgroup><h2>Lambdas</h2></hgroup>
         <article>
-            <pre class="prettyprint">        val verboseLambda : (Int) -> Boolean =
-                { i : Int ->
-                    println("lambda invoked")
-                    i % 2 == 0
-                }
-        val result = verboseLambda(4)
+        <pre class="prettyprint">    val verboseLambda : (Int) -> Boolean =
+            { i : Int ->
+                println("lambda invoked")
+                i % 2 == 0
+            }
+    val result = verboseLambda(4)
 
-        // type inference
-        val tinyNumbers = listOf(1,2,3,4).filter{ n -> n < 3 }
+    // type inference
+    val tinyNumbers = listOf(1,2,3,4).filter{ n -> n < 3 }
 
-        // single argument sugar
-        val conciseLambda = listOf(1,2,3).filter{ it > 0}</pre>
+    // single argument sugar
+    val conciseLambda = listOf(1,2,3).filter{ it > 0}</pre>
         </article>
     </slide>
 
@@ -160,16 +160,31 @@ URL: https://code.google.com/p/io-2012-slides
     <slide>
         <hgroup><h2>Nullable Types I</h2></hgroup>
         <article>
-            <pre class="prettyprint">        var a: String = "abc"
-        a = null // compilation error
+            <pre class="prettyprint">    var a: String = "abc"
+    a = null // compilation error
 
-        val b: String? = "abc"
-        b = null</pre>
+    val b: String? = "abc"
+    b = null</pre>
         </article>
     </slide>
 
     <slide>
         <hgroup><h2>Nullable Types II</h2></hgroup>
+        <article>
+                <pre class="prettyprint">    var b : String? = "dog"
+
+    var l = b.length //does not compile
+
+    if (b != null && b.isNotEmpty()) {
+        print("String of length ${b.length}")
+    } else {
+        print("Empty string")
+    }</pre>
+        </article>
+    </slide>
+
+    <slide>
+        <hgroup><h2>Nullable Types III</h2></hgroup>
         <article>
             <pre class="prettyprint">        val b: String? = null
 
@@ -182,7 +197,7 @@ URL: https://code.google.com/p/io-2012-slides
     </slide>
 
     <slide>
-        <hgroup><h2>Nullable Types III</h2></hgroup>
+        <hgroup><h2>Nullable Types IV</h2></hgroup>
         <article>
             <pre class="prettyprint">
     data class SmallCompany(var employee: Person? = null)
@@ -193,7 +208,7 @@ URL: https://code.google.com/p/io-2012-slides
     </slide>
 
     <slide>
-        <hgroup><h2>Nullable Types IV</h2></hgroup>
+        <hgroup><h2>Nullable Types V</h2></hgroup>
         <article>
             <pre class="prettyprint">
     val a: String = "I am no integer"
