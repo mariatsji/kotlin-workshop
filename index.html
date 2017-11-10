@@ -150,14 +150,16 @@ URL: https://code.google.com/p/io-2012-slides
 </article>
 </slide>
 <slide>
-        <hgroup><h2>Kotlin</h2></hgroup>
+        <hgroup><h2>Kotlin - Data classes</h2></hgroup>
         <article>
         <p>The following gives everything the Java example did, including getters, equals and hashcode. For Scalaists, think case class</p>
         <pre class="prettyprint kotlin">
 data class Person(val name: String, val country: String = "Norway", val age : Int = 18)
 </pre>
     <p>So, creating a new Person where you're fine with the default country, but want to change the age?</p>
-    <pre class="prettyprint kotlin">Person("Christopher", age = 35)</pre>
+    <pre class="prettyprint kotlin">Person("Arne Scheie", age = 73)</pre>
+    <p>Or be explicit with all parameters and do</p> 
+    <pre class="prettyprint kotlin">Person(name = "Brede Hangeland", age = 36)</pre>
     </article>
     </slide>
 
@@ -181,10 +183,6 @@ data class Person(val name: String, val country: String = "Norway", val age : In
 
     <slide>
         <hgroup><h2>String Templates</h2></hgroup>
-    </slide>
-
-    <slide>
-        <hgroup><h2>Data Classes</h2></hgroup>
     </slide>
 
     <slide>
@@ -293,7 +291,50 @@ data class Person(val name: String, val country: String = "Norway", val age : In
     </slide>
 
     <slide>
+        <hgroup><h2>Extension functions</h2></hgroup>
+        <article>
+            <p>Kotlin allows you to write custom extensions for any class. This is a power that needs to be used carefully, or you'll end up in extension hell; Kotlin's version of implicits hell</p>
+            <pre class="prettyprint kotlin">
+fun List&lt;Int&gt;.largerThanN(n: Int) = this.filter { it > n }
+listOf(5, 7, 8, 11, 1, 2, 3).largerThanN(5)
+>>> [7, 8, 11]
+            </pre>
+        </article>
+    </slide>
+    <slide>
+        <hgroup><h2>Extension properties</h2></hgroup>
+        <article>
+            Kotlin also supports extension properties. 
+        pre class="prettyprint kotlin">
+val &lt;T&gt; List&lt;T&gt;.lastIndex: Int
+    get() = size - 1
+
+    listOf(1,2,3,4,5).lastIndex
+    >>> 4
+            </pre>
+        </article>
+    </slide>
+    <slide class="segue">
         <hgroup><h2>Collections</h2></hgroup>
+        <article>
+            <h3>Immutable by default</h3>
+            <p>Kotlin's collections are immutable by default. But it does have mutable collections</p>
+            <pre class="prettyprint kotlin">
+                val x = listOf(1)
+                x.add(2)
+                >>> error: unresolved reference: add
+                val x = mutableListOf(1)
+                x.add(2)
+                x
+                >>> [1,2]
+            </pre>
+            <pre class="prettyprint kotlin">
+                val x = listOf(1)
+                val y = x + 2
+                y
+                >>> [1, 2]
+            </pre>
+        </article>
     </slide>
 
     <slide class="thank-you-slide segue nobackground">
