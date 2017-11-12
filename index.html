@@ -249,6 +249,31 @@ data class Person(val name: String, val country: String = "Norway", val age : In
 
     <slide>
         <hgroup><h2>Smart Casts</h2></hgroup>
+        <article>
+                <pre class="prettyprint">fun smartCast1(x: Any) {
+    if (x is String) {
+        print(x.length) // x is automatically cast to String
+    }
+}
+
+
+fun smartCast2(x: Any) {
+    if (x !is String) return
+    print(x.length) // x is automatically cast to String
+}</pre>
+        </article>
+    </slide>
+
+    <slide>
+        <hgroup><h2>When-expression (Pattern Matching)</h2></hgroup>
+        <article>
+                <pre class="prettyprint">when (x) {
+    is String -> println(x.length) // Smart casts work for when-expressions
+    in 1..10 -> println("x is in the range 1..10")
+    is IntArray -> println(x.sum())
+    else -> println("x is unknown")
+}</pre>
+        </article>
     </slide>
 
     <slide>
