@@ -93,35 +93,37 @@ URL: https://code.google.com/p/io-2012-slides
             <h2>Hello World</h2>
         </hgroup>
         <article>
-        <pre class="prettyprint">object Example {
-
-    val greeting = "Hello, world!"
-    var counter = 0
-
-    @JvmStatic
-    fun main(args: Array&lt;String&gt;) {
-        println(greeting)
-        counter++
-        println("greeting nr $counter")
+        <pre class="prettyprint">class Greeter(val name : String) {
+    fun greet() {
+        println("Hello, ${name}")
     }
+}
+
+fun main(args : Array&lt;String&gt;) {
+    Greeter("World").greet()
 }</pre>
         </article>
     </slide>
 
     <slide>
         <hgroup>
-            <h2>Classes, members, objects</h2>
+            <h2>Classes and members</h2>
         </hgroup>
             <article>
-                <pre class="prettyprint">class MyClass {
+                <pre class="prettyprint">class Greeter(private val name : String) {
+    private var counter = 0
 
-    val aProperty = 18
-
-    fun printProperty() : Unit {
-        println("Only 2 away from ${addTwo(aProperty)}")
+    fun getGreeting(includeNumber: Boolean): String {
+        return if (includeNumber) {
+            "Hello, ${name}. Greeting message nr ${counter++}"
+        } else {
+            "Hello, ${name}"
+        }
     }
+}
 
-    fun addTwo(i : Int) : Int = i + 2
+fun main(args : Array&lt;String&gt;) {
+    Greeter("World").getGreeting(true)
 }</pre>
             </article>
     </slide>
@@ -182,7 +184,7 @@ data class Person(val name: String, val country: String = "Norway", val age : In
     </slide>
 
     <slide>
-        <hgroup><h2>String Templates</h2></hgroup>
+        <hgroup><h2></h2></hgroup>
     </slide>
 
     <slide>
