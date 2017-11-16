@@ -402,7 +402,7 @@ roster
             </pre>
             <p>Kotlin groupBy</p>
             <pre class="prettyprint kotlin">
-val groupedBy: Map&lt;K, V&gt; = roster.groupBy(
+val groupedBy: Map&lt;K, List&lt;V&gt;&gt; = roster.groupBy(
     keySelector: (T) -> K = {it.gender},
     valueTransform: (T) -> V = {it.name}
 )                
