@@ -373,11 +373,12 @@ x
         <article>
             <p>They also support the usual functional collection suspects</p>
             <pre class="prettyprint kotlin">
-val x = listOf(1,2,3,4,5).reduce { acc, el -> acc + el }                
+val exampleList = listOf(1,2,3,4,5)                
+val x = exampleList.reduce { acc, el -> acc + el }                
 >>> x: Int
 x
 >>> 15
-val y = listOf(1,2,3,4,5).groupBy { it % 2 == 0 }
+val y = exampleList.groupBy { it % 2 == 0 }
 >>> y: Map&lt;Bool, List&lt;Int&gt;&gt;
 y
 >>> {false=[1,3,5], true=[2,4]}
