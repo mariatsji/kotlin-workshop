@@ -355,11 +355,14 @@ val &lt;T&gt; List&lt;T&gt;.lastIndex: Int
                 x
                 >>> [1,2]
             </pre>
+            <p>They also support the usual functional collection suspects</p>
             <pre class="prettyprint kotlin">
-                val x = listOf(1)
-                val y = x + 2
+                val x = listOf(1,2,3,4,5).reduce { acc, el -> acc + el }                
+                >>> x: Int
+                val y = listOf(1,2,3,4,5).groupBy { it % 2 == 0 }
+                >>> y: Map&lt;Bool, List&lt;Int&gt;&gt;
                 y
-                >>> [1, 2]
+                >>> {false=[1,3,5], true=[2,4]}
             </pre>
         </article>
     </slide>
