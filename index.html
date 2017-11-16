@@ -342,22 +342,34 @@ listOf(1,2,3,4,5).lastIndex
         </article>
     </slide>
     <slide>
-        <hgroup><h2>Collections</h2></hgroup>
+        <hgroup><h2>Collections I - Immutability</h2></hgroup>
         <article>
-            <p>Kotlin's collections are immutable by default. But it does have mutable collections</p>
+            <p>Kotlin's collections are immutable by default, so default constructors returns an immutable collection</p>
             <pre class="prettyprint kotlin">
-                val x = listOf(1)
-                x.add(2)
-                >>> error: unresolved reference: add
-                val x = mutableListOf(1)
-                x.add(2)
-                x
-                >>> [1,2]
+val x = listOf(1)
+x.add(2)
+>>> error: unresolved reference: add
+val y = x + 2
+>>> y: [1,2]
+x
+>>> x: [1]
+            </pre>
+            </article>
+            </slide>
+            <slide>
+                <hgroup><h2>Collections II - Mutable</h2></hgroup>
+            <p>If you want a mutable list you'll have to explicitly ask for it, and a mutable list works much like java's. The add method returns a boolean saying whether or not the object was added</p>
+            <pre class="prettyprint kotlin">
+val x = mutableListOf(1)
+>>> [1]
+x.add(2)
+x
+>>> [1,2]
             </pre>
         </article>
     </slide>
     <slide>
-        <hgroup><h2>Collections II</h2></hgroup>
+        <hgroup><h2>Collections III - Functional</h2></hgroup>
         <article>
             <p>They also support the usual functional collection suspects</p>
             <pre class="prettyprint kotlin">
@@ -373,7 +385,7 @@ y
         </article>
     </slide>
     <slide>
-        <hgroup><h2>Collections III</h2></hgroup>
+        <hgroup><h2>Collections IV - Reduced verbosity</h2></hgroup>
         <article>
             <p>Java groupby</p>
             <pre class="prettyprint java">
@@ -389,9 +401,9 @@ roster
             </pre>
             <p>Kotlin groupBy</p>
             <pre class="prettyprint kotlin">
-roster.groupBy(
-    {it.gender},
-    {it.name}
+val groupedBy: Map&lt;K, V&gt; = roster.groupBy(
+    keySelector: (T) -> K = {it.gender},
+    valueTransform: (T) -> V = {it.name}
 )                
             </pre>
         </article>
