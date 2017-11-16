@@ -81,7 +81,7 @@ URL: https://code.google.com/p/io-2012-slides
             <ul class="build">
                 <li>Concise</li>
                 <li>Safe</li>
-                <li>Interopable</li>
+                <li>Interoperable</li>
                 <li>Fast compiles</li>
                 <li>Tool-friendly</li>
             </ul>
@@ -128,12 +128,29 @@ fun main(args : Array&lt;String&gt;) {
             </article>
     </slide>
 
+    <slide>
+        <hgroup><h2>Default and named arguments</h2></hgroup>
+        <article>
+        <p>Kotlin has both default and named arguments. This allows class definitions that are concise and precise</p>
+        <pre class="prettyprint kotlin">
+data class Person(val name: String, val country: String = "Norway", val age : Int = 18)
+</pre>
+    <p>So, creating a new Person where you're fine with the default country, but want to change the age?</p>
+    <pre class="prettyprint kotlin">Person(name = "Arne Scheie", age = 73)</pre>
+    <p>A person from Norway of age 18 could be created by</p>
+    <pre class="prettyprint kotlin">Person("Some name")</pre>
+    <p>Whereas an empty constructor would give a compile error</p>
+    <pre class="prettyprint kotlin">Person()
+>>> error: no value passed for parameter 'name'        
+    </pre>
+    </article>
+    </slide>
 
     <slide>
-        <hgroup><h2>Named and Default Arguments</h2></hgroup>
+        <hgroup><h2>Same thing in Java</h2></hgroup>
         <article>
-            <p>Java - Assume getters, equals, hashCode etc</p>
-                <pre class="prettyprint java">public Person {
+            <p>Java version of the same would've looked like this. equals, hashCode, getters excluded for some brevity</p>
+            <pre class="prettyprint java">public Person {
     final String name;
     final String country;
     final Integer age;
@@ -143,6 +160,9 @@ fun main(args : Array&lt;String&gt;) {
     public Person(String name, String country) {
         this(name, country, 18);
     }
+    public Person(String name, Integer age) {
+        this(name, "Norway", age);
+    }
     public Person(String name, String country, Integer age) {
         this.name = name;
         this.country = country
@@ -151,19 +171,6 @@ fun main(args : Array&lt;String&gt;) {
 }</pre>
 </article>
 </slide>
-<slide>
-        <hgroup><h2>Kotlin - Data classes</h2></hgroup>
-        <article>
-        <p>The following gives everything the Java example did, including getters, equals and hashcode. For Scalaists, think case class</p>
-        <pre class="prettyprint kotlin">
-data class Person(val name: String, val country: String = "Norway", val age : Int = 18)
-</pre>
-    <p>So, creating a new Person where you're fine with the default country, but want to change the age?</p>
-    <pre class="prettyprint kotlin">Person("Arne Scheie", age = 73)</pre>
-    <p>Or be explicit with all parameters and do</p> 
-    <pre class="prettyprint kotlin">Person(name = "Brede Hangeland", age = 36)</pre>
-    </article>
-    </slide>
 
     <slide>
         <hgroup><h2>Lambdas</h2></hgroup>
