@@ -283,44 +283,48 @@ fun smartCast2(x: Any) {
         </article>
     </slide>
 
+
     <slide>
-        <hgroup><h2>Object Expressions I</h2></hgroup>
-            <article>
-                <pre class="prettyprint">    data class Car(val color = "blue") // class
-    object Lock { val i = 3 } // object literal
-
-    val myObject: Any = object {
-        val i = 5
+        <hgroup><h2>Object Expressions and Declarations I</h2></hgroup>
+        <article>
+                <pre class="prettyprint">// Object Expression ~= anonymous inner classes in Java
+window.addMouseListener(object : MouseAdapter() {
+    override fun mouseClicked(e: MouseEvent) {
+        // ...
     }
+})</pre>
+        </article>
+    </slide>
 
-    println(Car().color)
-    println(Lock.i)
-    println(myObject.i)</pre>
+    <slide>
+        <hgroup><h2>Object Expressions and Declarations II</h2></hgroup>
+            <article>
+                <pre class="prettyprint">class Car(val color = "blue") // Class
+
+object Lock { // Object declaration
+    val i = 3
+}
+
+val myObject: Any = object { // Object expression
+    val i = 5
+}
+
+println(Car().color)
+println(Lock.i)
+println(myObject.i)</pre>
             </article>
     </slide>
 
     <slide>
-        <hgroup><h2>Object Expressions II</h2></hgroup>
+        <hgroup><h2>Object Expressions and Declarations III</h2></hgroup>
             <article>
-                <pre class="prettyprint">    //Object Expression
-    window.addMouseListener(object : MouseAdapter() {
-        override fun mouseClicked(e: MouseEvent) {
-            // ...
-        }
-    })</pre>
-            </article>
-    </slide>
-
-    <slide>
-        <hgroup><h2>Object Expressions III</h2></hgroup>
-            <article>
-                <pre class="prettyprint">    class MyClass {
-        companion object Factory {
-            fun create(): MyClass = MyClass()
-        }
+                <pre class="prettyprint">class MyClass {
+    companion object Factory {
+        fun create(): MyClass = MyClass()
     }
+}
 
-    MyClass.create() // access as if "static" in class</pre>
+MyClass.create() // access as if "static" in class</pre>
             </article>
     </slide>
 
@@ -363,8 +367,10 @@ x
             </pre>
             </article>
             </slide>
+
             <slide>
                 <hgroup><h2>Collections II - Mutable</h2></hgroup>
+                <article>
             <p>If you want a mutable list you'll have to explicitly ask for it, and a mutable list works much like java's. The add method returns a boolean saying whether or not the object was added</p>
             <pre class="prettyprint kotlin">
 val x = mutableListOf(1)
@@ -375,6 +381,7 @@ x
             </pre>
         </article>
     </slide>
+
     <slide>
         <hgroup><h2>Collections III - Functional</h2></hgroup>
         <article>
