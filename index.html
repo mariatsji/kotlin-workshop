@@ -332,19 +332,18 @@ listOf(5, 7, 8, 11, 1, 2, 3).largerThanN(5)
         <hgroup><h2>Extension properties</h2></hgroup>
         <article>
             Kotlin also supports extension properties. 
-        pre class="prettyprint kotlin">
+        <pre class="prettyprint kotlin">
 val &lt;T&gt; List&lt;T&gt;.lastIndex: Int
-    get() = size - 1
+get() = size - 1
 
-    listOf(1,2,3,4,5).lastIndex
-    >>> 4
+listOf(1,2,3,4,5).lastIndex
+>>> 4
             </pre>
         </article>
     </slide>
-    <slide class="segue">
+    <slide>
         <hgroup><h2>Collections</h2></hgroup>
         <article>
-            <h3>Immutable by default</h3>
             <p>Kotlin's collections are immutable by default. But it does have mutable collections</p>
             <pre class="prettyprint kotlin">
                 val x = listOf(1)
@@ -355,18 +354,48 @@ val &lt;T&gt; List&lt;T&gt;.lastIndex: Int
                 x
                 >>> [1,2]
             </pre>
+        </article>
+    </slide>
+    <slide>
+        <hgroup><h2>Collections II</h2></hgroup>
+        <article>
             <p>They also support the usual functional collection suspects</p>
             <pre class="prettyprint kotlin">
-                val x = listOf(1,2,3,4,5).reduce { acc, el -> acc + el }                
-                >>> x: Int
-                val y = listOf(1,2,3,4,5).groupBy { it % 2 == 0 }
-                >>> y: Map&lt;Bool, List&lt;Int&gt;&gt;
-                y
-                >>> {false=[1,3,5], true=[2,4]}
+val x = listOf(1,2,3,4,5).reduce { acc, el -> acc + el }                
+>>> x: Int
+x
+>>> 15
+val y = listOf(1,2,3,4,5).groupBy { it % 2 == 0 }
+>>> y: Map&lt;Bool, List&lt;Int&gt;&gt;
+y
+>>> {false=[1,3,5], true=[2,4]}
             </pre>
         </article>
     </slide>
-
+    <slide>
+        <hgroup><h2>Collections III</h2></hgroup>
+        <article>
+            <p>Java groupby</p>
+            <pre class="prettyprint java">
+roster
+    .stream()
+    .collect(
+    Collectors.groupingBy(
+        Person::getGender,                      
+        Collectors.mapping(
+        Person::getName,
+        Collectors.toList()))
+        );
+            </pre>
+            <p>Kotlin groupBy</p>
+            <pre class="prettyprint kotlin">
+roster.groupBy(
+    {it.gender},
+    {it.name}
+)                
+            </pre>
+        </article>
+    </slide>
     <slide class="thank-you-slide segue nobackground">
         <article class="flexbox vleft">
             <h2>Thanks!</h2>
