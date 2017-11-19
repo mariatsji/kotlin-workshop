@@ -248,16 +248,6 @@ data class Person(val name: String, val country: String = "Norway", val age : In
     </slide>
 
     <slide>
-        <hgroup><h2>Nullable Types V</h2></hgroup>
-        <article>
-            <pre class="prettyprint">
-    val a: String = "I am no integer"
-    val aInt: Int? = a as? Int // null
-
-    listOf(1, null, 4).filterNotNull() // [1,4]</pre></article>
-    </slide>
-
-    <slide>
         <hgroup><h2>Smart Casts</h2></hgroup>
         <article>
                 <pre class="prettyprint">fun smartCast1(x: Any) {
