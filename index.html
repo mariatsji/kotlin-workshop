@@ -83,19 +83,6 @@ URL: https://code.google.com/p/io-2012-slides
     </slide>
 
     <slide>
-        <hgroup><h2>About Kotlin</h2></hgroup>
-        <article>
-            <ul class="build">
-                <li>Concise</li>
-                <li>Safe</li>
-                <li>Interop-able</li>
-                <li>Fast compiles</li>
-                <li>Tool-friendly</li>
-            </ul>
-        </article>
-    </slide>
-
-    <slide>
         <hgroup>
             <h2>Hello World</h2>
         </hgroup>
@@ -203,7 +190,7 @@ data class Person(val name: String, val country: String = "Norway", val age : In
             <pre class="prettyprint">    var a: String = "abc"
     a = null // compilation error
 
-    val b: String? = "abc"
+    var b: String? = "abc"
     b = null</pre>
         </article>
     </slide>
@@ -211,33 +198,20 @@ data class Person(val name: String, val country: String = "Norway", val age : In
     <slide>
         <hgroup><h2>Nullable Types II</h2></hgroup>
         <article>
-                <pre class="prettyprint">    var b : String? = "dog"
+            <pre class="prettyprint">    val a: String? = null
 
-    var l = b.length //does not compile
+    if (a != null) {
+        print("String of length ${a.length}") //good
+    }
 
-    if (b != null && b.isNotEmpty()) {
-        print("String of length ${b.length}")
-    } else {
-        print("Empty string")
-    }</pre>
+    val length: Int? = a!!.length // NPE
+
+    val length2: Int? = a?.length // good</pre>
         </article>
     </slide>
 
     <slide>
         <hgroup><h2>Nullable Types III</h2></hgroup>
-        <article>
-            <pre class="prettyprint">        val b: String? = null
-
-        val length1: Int? = b.length // compilation error
-
-        val length2: Int? = b!!.length // NPE
-
-        val length: Int? = b?.length // good</pre>
-        </article>
-    </slide>
-
-    <slide>
-        <hgroup><h2>Nullable Types IV</h2></hgroup>
         <article>
             <pre class="prettyprint">
     data class SmallCompany(var employee: Person? = null)
@@ -267,11 +241,13 @@ fun smartCast2(x: Any) {
     <slide>
         <hgroup><h2>When-expression (Pattern Matching)</h2></hgroup>
         <article>
-                <pre class="prettyprint">when (x) {
-    is String -> println(x.length) // Smart casts work for when-expressions
-    in 1..10 -> println("x is in the range 1..10")
-    is IntArray -> println(x.sum())
-    else -> println("x is unknown")
+                <pre class="prettyprint">fun ofType(x: Any) {
+    when (x) {
+        is String -> println(x.length) // Smart casts work for when-expressions
+        in 1..10 -> println("x is in the range 1..10")
+        is IntArray -> println(x.sum())
+        else -> println("x is unknown")
+    }
 }</pre>
         </article>
     </slide>
@@ -298,13 +274,8 @@ object Lock { // Object declaration
     val i = 3
 }
 
-val myObject: Any = object { // Object expression
-    val i = 5
-}
-
 println(Car().color)
-println(Lock.i)
-println(myObject.i)</pre>
+println(Lock.i)</pre>
             </article>
     </slide>
 
@@ -312,7 +283,7 @@ println(myObject.i)</pre>
         <hgroup><h2>Object Expressions and Declarations III</h2></hgroup>
             <article>
                 <pre class="prettyprint">class MyClass {
-    companion object Factory {
+    companion object {
         fun create(): MyClass = MyClass()
     }
 }
@@ -385,48 +356,62 @@ val x = exampleList.reduce { acc, el -> acc + el }
 >>> x: Int
 x
 >>> 15
-val y = exampleList.groupBy { it % 2 == 0 }
->>> y: Map&lt;Bool, List&lt;Int&gt;&gt;
-y
->>> {false=[1,3,5], true=[2,4]}
-            </pre>
+
+val (evens, odds) = listOf(1, 2, 3, 4).partition { it % 2 == 0 }
+evens
+>>> [2,4]
+odds
+>>> [1,3]</pre>
         </article>
     </slide>
     <slide>
         <hgroup><h2>Collections IV - Reduced verbosity</h2></hgroup>
         <article>
-            <p>Java groupby</p>
+            <p>Java groupBy</p>
             <pre class="prettyprint java">
-roster
-    .stream()
+Map&lt;Gender, List&lt;String&gt;&gt; groupedBy = roster.stream()
     .collect(
     Collectors.groupingBy(
         Person::getGender,                      
         Collectors.mapping(
         Person::getName,
         Collectors.toList()))
-        );
-            </pre>
+        );</pre>
             <p>Kotlin groupBy</p>
             <pre class="prettyprint kotlin">
-val groupedBy: Map&lt;K, List&lt;V&gt;&gt; = roster.groupBy(
-    keySelector: (T) -> K = {it.gender},
-    valueTransform: (T) -> V = {it.name}
-)                
-            </pre>
+val groupedBy: Map&lt;Gender, List&lt;String&gt;&gt; = roster.groupBy(
+    keySelector = { it.gender },
+    valueTransform = { it.name }
+)</pre>
         </article>
-    </slide>
-    <slide class="thank-you-slide segue nobackground">
-        <article class="flexbox vleft">
-            <h2>Thanks!</h2>
-            <br><br>
-            <h2>Questions?</h2>
-        </article>
-        <p class="auto-fadein" data-config-contact>
-            <!-- populated from slide_config.json -->
-        </p>
     </slide>
 
+    <slide>
+        <article class="flexbox vleft">
+            <ul>
+                <li>Code: <a href="https://github.com/Kotlin/kotlin-koans">https://github.com/Kotlin/kotlin-koans</a></li>
+                <li>
+                    <ul>
+                        <li>'master' is starting point for exercises</li>
+                        <li>'resolutions' for solution</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul>
+                <li>Slides: <a href="https://mariatsji.github.io/kotlin-workshop">https://mariatsji.github.io/kotlin-workshop</a></li>
+            </ul>
+
+            <ul>
+                <li>Techday program: <a href="http://tech-day.finntech.no/">http://tech-day.finntech.no/</a></li>
+                <li>
+                    <ul>
+                        <li>Lunch at 11:45</li>
+                    </ul>
+                </li>
+            </ul>
+        </article>
+    </slide>
 
     <slide class="backdrop"></slide>
 
